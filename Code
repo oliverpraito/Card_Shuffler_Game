@@ -1,0 +1,45 @@
+# Create the Deck
+
+suits = "DHSC"
+cards = []
+for letter in suits:
+    for number in range(2, 15):
+        cards.extend([str(number)+letter])
+print(cards)
+print(len(cards))
+
+# GUI set up
+
+from tkinter import*
+root = Tk()
+import random
+
+# Hit button function
+def hitme():
+    card_number = random.randint(0, len(cards))
+    dealt_card = cards[card_number]
+    print(dealt_card + "("+str(len(cards))+")")
+    cards.remove(cards[card_number])
+    hit_buttons = Label(root, text=dealt_card).pack()
+
+# Reset button function
+def reset():
+    cards = []
+    for letter in suits:
+        for number in range(2,15):
+            cards.extend([str(number) + letter])
+    print(len(cards))
+    reset_buttons = Label(root, text="Deck Reset").pack()
+    return cards
+
+hit_button = Button(root, text="Hit Me", command=hitme).pack()
+reset_button = Button(root, text="Reset", command=reset).pack()
+root.mainloop()
+
+
+
+
+
+
+
+
